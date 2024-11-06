@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getPersons, deletePerson } from '../services/api';
-import { Table, Button } from 'react-bootstrap';
+import { Table, } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import '../App.css';
 
 const PersonsList = ({ onEdit }) => {
   const [persons, setPersons] = useState([]);
@@ -26,7 +27,7 @@ const PersonsList = ({ onEdit }) => {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Emmmmail</th>
+          <th>Address</th>
           <th>Phone</th>
           <th>Actions</th>
         </tr>
@@ -38,13 +39,17 @@ const PersonsList = ({ onEdit }) => {
             <td>{person.address}</td>
             <td>{person.phone}</td>
             <td>
-              <Button variant="warning" onClick={() => onEdit(person)}>
+            <button type="btn"  onClick={() => onEdit(person)}>
+            <span className="button_top">
                 <FontAwesomeIcon icon={faEdit} /> Edit
-              </Button>
+            </span>
+            </button>
               {' '}
-              <Button variant="danger" onClick={() => handleDelete(person.id)}>
+              <button type="button" onClick={() => handleDelete(person.id)}>
+              <span className="button_top">
                 <FontAwesomeIcon icon={faTrash} /> Delete
-              </Button>
+                </span>
+              </button>
             </td>
           </tr>
         ))}

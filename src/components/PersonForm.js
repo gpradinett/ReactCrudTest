@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { createPerson, updatePerson } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFloppyDisk, faBan } from '@fortawesome/free-solid-svg-icons';
-
+import { faFloppyDisk, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { InputGroup, FormControl } from 'react-bootstrap';
+import { FaUser, FaEnvelope, FaPhone } from 'react-icons/fa';
+import '../App.css';
 
 const PersonForm = ({ person, onSave, onCancel }) => {
   const [name, setName] = useState('');
@@ -41,21 +43,30 @@ const PersonForm = ({ person, onSave, onCancel }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-    <FloatingLabel controlId="floatingName" label="Name" className="mb-3">
-      <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} />
-    </FloatingLabel>
-    <FloatingLabel controlId="floatingAddress" label="Address" className="mb-3">
-      <Form.Control type="text" value={address} onChange={(e) => setEmail(e.target.value)} />
-    </FloatingLabel>
-    <FloatingLabel controlId="floatingPhone" label="Phone" className="mb-3">
-      <Form.Control type="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-    </FloatingLabel>
-    <Button variant="primary" type="submit">
-    <FontAwesomeIcon icon={faFloppyDisk} /> Save
-    </Button>
-    {' '}
-    <Button variant="secondary" onClick={handleCancel }>
-    <FontAwesomeIcon icon={faBan} />  Cancel</Button>
+    <InputGroup className="mb-3">
+      <InputGroup.Text><FaUser /></InputGroup.Text>
+      <FormControl type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+    </InputGroup>
+    <InputGroup className="mb-3">
+      <InputGroup.Text><FaEnvelope /></InputGroup.Text>
+      <FormControl type="text" placeholder="Address" value={address} onChange={(e) => setEmail(e.target.value)} />
+    </InputGroup>
+    <InputGroup className="mb-3">
+      <InputGroup.Text><FaPhone /></InputGroup.Text>
+      <FormControl type="phone" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+    </InputGroup>
+
+    <button type="submit">
+        <span className="button_top">
+          <FontAwesomeIcon icon={faFloppyDisk} /> Save
+        </span>
+      </button>
+      {' '}
+      <button type="button" onClick={handleCancel}>
+        <span className="button_top">
+          <FontAwesomeIcon icon={faPowerOff} /> Cancel
+        </span>
+      </button>
   </Form>
 );
 };
